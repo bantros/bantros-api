@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 
+const fetchAsync = require('./utils/fetchAsync');
 const oauth = require('./utils/oauth');
 
 if (process.env.NODE_ENV !== 'production') {
@@ -30,19 +31,11 @@ app.use((req, res, next) => {
 
 // app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/user', (req, res) => {
-  fetchLatestTweet().then(data => console.log('data', data));
-  // res.status(200).send(data);
+app.get('/fetch-latest-tweet', (req, res) => {
+  fetchLatestTweet().then(data => {
+    res.status(200).send(data);
+  });
 });
-
-// const fetchAsync = async url => {
-//   try {
-//     const response = await fetch(url);
-//     return response.json();
-//   } catch (err) {
-//     return err;
-//   }
-// };
 
 const requestToken = async () => {
   console.log('requestToken');
@@ -56,7 +49,7 @@ const requestToken = async () => {
   };
 
   try {
-    const twitter = await oauth.getToken(
+    const twitter = await oauth(
       'https://api.twitter.com/oauth2/token',
       auth.twitter
     );
@@ -70,25 +63,20 @@ const fetchLatestTweet = async () => {
   console.log('fetchLatestTweet');
 
   const token = await requestToken();
-  return token;
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
 
-  // const options = {
-  //   headers: { Authorization: 'Bearer ' + token }
-  // };
+  try {
+    const res = await fetchAsync(
+      'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=bantros&count=1',
+      options
+    );
 
-  // try {
-  //   const response = await fetch.get(
-  //     'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=bantros&count=1', {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`
-  //       }
-  //     }
-  //   );
-  //   if (response.status === 200) {
-  //     // this.setLatestTweet(response.data);
-  //     console.log(response.data);
-  //   }
-  // } catch (err) {
-  //   console.error(err);
-  // }
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
 };
