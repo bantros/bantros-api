@@ -3,6 +3,7 @@ const app = express();
 
 const fetchAsync = require('./utils/fetchAsync');
 const oauth = require('./utils/oauth');
+const projects = require('./data/projects');
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
@@ -11,9 +12,13 @@ if (process.env.NODE_ENV !== 'production') {
 const SET_ORIGIN_URLS = ['https://bantros.net:443', 'http://localhost:8080'];
 const SET_LISTEN_PORT = process.env.PORT || 8000;
 
+// Listen
+
 app.listen(SET_LISTEN_PORT, () =>
   console.log(`Listening on port ${SET_LISTEN_PORT}!`)
 );
+
+// Use
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
@@ -29,13 +34,21 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.get('/', (req, res) => res.send('Hello World!'));
+// Routes
+
+app.get('/projects', (req, res) => {
+  res.status(200).send(projects);
+});
 
 app.get('/fetch-latest-tweet', (req, res) => {
   fetchLatestTweet().then(data => {
     res.status(200).send(data);
   });
 });
+
+// app.get('/', (req, res) => res.send('Hello World!'));
+
+// Request token
 
 const requestToken = async () => {
   console.log('requestToken');
