@@ -166,14 +166,11 @@ const fetchLatestTrack = async () => {
       options
     );
 
-    switch (res.status) {
-      case 200:
-        console.log('setTrackInfo');
-        // setTrackInfo(res.data, 'currently');
-        break;
-      case 204:
-        fetchRecentTrack();
-        break;
+    if (res.status === 204) {
+      const recent = await fetchRecentTrack();
+      return recent;
+    } else if (res.status === 200) {
+      return res.data;
     }
   } catch (err) {
     console.error(err);
@@ -196,15 +193,15 @@ const fetchRecentTrack = async () => {
   };
 
   try {
-    const res = await fetch.get(
+    const res = await fetchAsync(
       'https://api.spotify.com/v1/me/player/recently-played',
       options
     );
 
     if (res.status === 200) {
-      setTrackInfo(res.data, 'recently');
+      return res.data;
     }
   } catch (err) {
     console.error(err);
   }
-},
+};
