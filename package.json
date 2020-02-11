@@ -1,6 +1,6 @@
 {
   "name": "bantros-api",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "",
   "main": "./server.js",
   "repository": {
@@ -8,9 +8,9 @@
     "url": "https://github.com/bantros/bantros-api"
   },
   "dependencies": {
-    "axios": "^0.18.0",
-    "dotenv": "^6.1.0",
-    "express": "^4.16.3"
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
   },
   "scripts": {
     "watch": "NODE_ENV=development node ./server.js",
