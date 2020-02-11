@@ -1,5 +1,17 @@
 const projects = [
   {
+    id: 'horlicks',
+    title: 'Horlicks',
+    url: 'https://www.horlicks.co.uk/',
+    color: 'dark-blue-hover'
+  },
+  {
+    id: 'dr-sarah-davies',
+    title: 'Dr Sarah Davies',
+    url: 'https://www.drsarahdavies.co.uk/',
+    color: 'purple-hover'
+  },
+  {
     id: 'benenox',
     title: 'Benenox',
     url: 'https://www.benenox.com/',
@@ -12,12 +24,6 @@ const projects = [
     color: 'green-hover'
   },
   {
-    id: 'jam-pan',
-    title: 'Jam Pan',
-    url: 'https://jam-pan.com/',
-    color: 'gold-hover'
-  },
-  {
     id: 'northern-lights',
     title: 'Northern Lights Agency',
     url: 'http://northernlightsagency.co.uk/',
@@ -28,12 +34,6 @@ const projects = [
     title: 'Mira Technology Park',
     url: 'https://www.miratechnologypark.com/',
     color: 'light-green-hover'
-  },
-  {
-    id: 'coffee-wagon',
-    title: 'Coffee Wagon',
-    url: 'http://coffeewagon.co.uk/',
-    color: 'washed-red-hover'
   },
   {
     id: 'raw',
@@ -58,18 +58,6 @@ const projects = [
     title: 'Woodwork Music',
     url: 'http://woodworkmusic.co.uk/',
     color: 'orange-hover'
-  },
-  {
-    id: 'james-giles',
-    title: 'James + Giles',
-    url: 'http://jamesandgiles.com/',
-    color: 'washed-green-hover'
-  },
-  {
-    id: 'pozzoni',
-    title: 'Pozzoni',
-    url: 'http://www.pozzoni.co.uk/',
-    color: 'light-blue-hover'
   }
 ];
 
