@@ -9,7 +9,13 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').load();
 }
 
-const SET_ORIGIN_URLS = ['https://bantros.net', 'http://localhost:8080'];
+const SET_ORIGIN_URLS = [
+  'https://bantros.net',
+  'https://bantros.bantros.now.sh',
+  'https://bantros.now.sh',
+  'http://localhost:8080',
+  'http://localhost:5000'
+];
 const SET_LISTEN_PORT = process.env.PORT || 8000;
 
 // Config
