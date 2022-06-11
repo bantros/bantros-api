@@ -11,10 +11,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 const SET_ORIGIN_URLS = [
   'https://bantros.net',
-  'https://bantros.bantros.now.sh',
-  'https://bantros.now.sh',
-  'http://localhost:8080',
-  'http://localhost:5000'
+  'https://bantros-svelte.vercel.app',
+  'http://localhost:3000'
 ];
 const SET_LISTEN_PORT = process.env.PORT || 8000;
 
@@ -91,6 +89,10 @@ const requestToken = async () => {
     console.error(err);
   }
 };
+
+// https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&redirect_uri=http://localhost:8000/callback/&scope=user-read-private%20user-read-email
+
+// curl -H "Authorization: Basic CLIENT_ID:CLIENT_SECRET" -d grant_type=authorization_code -d code=CODE -d redirect_uri=http://localhost:8000/callback/ https://accounts.spotify.com/api/token
 
 // Refresh OAuth token
 
